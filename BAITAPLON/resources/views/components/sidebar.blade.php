@@ -21,17 +21,17 @@
             Sản phẩm
         </a>
 
-        <a href="#" class="nav-link">
+        <a href="{{ route('orders.index') }}" class="nav-link {{ request()->is('orders*') ? 'active' : '' }}">
             <i class="bi bi-receipt me-2"></i>
             Đơn hàng
         </a>
 
-        <a href="#" class="nav-link">
+        <a href="{{ route('vouchers.index') }}" class="nav-link {{ request()->is('vouchers*') ? 'active' : '' }}">
             <i class="bi bi-ticket-perforated me-2"></i>
             Voucher
         </a>
 
-        <a href="#" class="nav-link">
+        <a href="{{ route('users.index') }}" class="nav-link {{ request()->is('users*') ? 'active' : '' }}">
             <i class="bi bi-people me-2"></i>
             Người dùng
         </a>

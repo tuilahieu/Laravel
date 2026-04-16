@@ -11,15 +11,18 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'voucher_id',
-        'total_price',
-        'discount_amount',
-        'final_price',
-        'status',
-        'name',
+        'receiver_name',
         'phone',
         'address',
-        'note',
+        'total_price',
+        'discount_amount',
+        'status',
     ];
+
+    public function getFinalPriceAttribute()
+    {
+        return $this->total_price - $this->discount_amount;
+    }
 
     public function user(): BelongsTo
     {
