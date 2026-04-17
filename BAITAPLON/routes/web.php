@@ -3,19 +3,20 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\Client\ShopController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VoucherController;
 
+
+use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\ShopController;
+
 // CLIENT
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/shop', [ShopController::class, 'index']);
 
-// Route::get('/shop', function () {
-//     return view('client.shop');
-// });
 
 // nhóm admin
 Route::prefix('admin')->group(function () {

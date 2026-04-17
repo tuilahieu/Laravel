@@ -1,47 +1,86 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 
 <head>
+    <meta charset="UTF-8">
     <title>Fashion Shop</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    {{-- Bootstrap --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
+<body class="bg-gray-100">
 
-    {{-- HEADER --}}
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4">
-        <a class="navbar-brand fw-bold" href="/">Fashion</a>
+    <!-- HEADER -->
+    <div class="bg-white shadow">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
 
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-4">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Trang chủ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/shop">Sản phẩm</a>
-                </li>
-            </ul>
+            {{-- LOGO --}}
+            <a href="/" class="text-2xl font-bold tracking-wide">
+                <img src="https://tokyolife.vn/_next/static/media/logo-chu-hac.79825a1d.png" alt="Fashion Shop" class="w-32">
+            </a>
+
+            {{-- SEARCH --}}
+            <div class="flex-1 mx-6">
+                <form action="/shop" method="GET" class="flex">
+                    <input
+                        type="text"
+                        name="keyword"
+                        placeholder="Tìm kiếm sản phẩm..."
+                        class="w-full border rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black">
+                    <button class="bg-black text-white px-4 rounded-r-lg">
+                        🔍
+                    </button>
+                </form>
+            </div>
+
+            {{-- ICONS --}}
+            <div class="flex items-center gap-5 text-xl">
+
+                {{-- CART --}}
+                <a href="/cart" class="relative">
+                    🛒
+                    <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+                        0
+                    </span>
+                </a>
+
+                {{-- USER --}}
+                <a href="/login">
+                    👤
+                </a>
+
+            </div>
+
         </div>
+    </div>
+    <!-- CATEGORY BAR -->
+    <div class="bg-gray-50 border-b">
+        <div class="max-w-7xl mx-auto px-4 py-2 flex justify-center">
 
-        <div>
-            <a href="/cart" class="btn btn-outline-dark btn-sm">Giỏ hàng</a>
-            <a href="/login" class="btn btn-dark btn-sm">Login</a>
+            <div class="flex gap-6 overflow-x-auto whitespace-nowrap">
+
+                <a href="/shop" class="text-sm font-medium hover:text-red-500">
+                    Tất cả
+                </a>
+
+                @foreach($globalCategories as $c)
+                <a href="/shop?category={{ $c->slug }}"
+                    class="text-sm font-medium hover:text-red-500">
+                    {{ $c->name }}
+                </a>
+                @endforeach
+
+            </div>
+
         </div>
-    </nav>
-
-    {{-- CONTENT --}}
-    <div class="container mt-4">
-        @yield('content')
     </div>
 
+    {{-- CONTENT --}}
+    @yield('content')
+
     {{-- FOOTER --}}
-    <footer class="bg-dark text-white text-center p-3 mt-5">
-        Fashion Shop © 2026
-    </footer>
+    <div class="bg-black text-white text-center py-6 mt-10">
+        <p>© 2026 Fashion Shop</p>
+    </div>
 
 </body>
 
